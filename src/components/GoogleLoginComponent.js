@@ -1,7 +1,18 @@
 import React, { Component } from "react";
-import "../styles.css";
-import LoggedIn from "./LoggedIn";
-import { MdLogin } from "react-icons/md";
+import IconButton from "@material-ui/core/IconButton";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Typography from "@material-ui/core/Typography";
+import { withStyles } from "@material-ui/core/styles";
+// import "../styles.css";
+// import LoggedIn from "./LoggedIn";
+// import { MdLogin } from "react-icons/md";
+
+const styles =theme => ({
+  loginIcon: {
+    marginLeft: theme.spacing(1),
+  },
+});
 
 class GoogleLoginComponent extends Component {
   constructor(props) {
@@ -53,23 +64,24 @@ class GoogleLoginComponent extends Component {
   };
 
   render() {
+    const { classes } = this.props;
+    
     return (
-      <div>
-        <button
-          className="mainGoogle__Button loginBtn loginBtn--google"
-          ref="googleLoginBtn"
-        >
-          {this.state.prof.jf === undefined ? (
-            <>
-              Login &nbsp;
-              <MdLogin />
-            </>
-          ) : (
-            <LoggedIn data={this.state.prof} />
-          )}
-        </button>
-      </div>
+      <IconButton
+        color="inherit"
+        className="mainGoogle__Button loginBtn loginBtn--google"
+        ref="googleLoginBtn"
+      >
+        {this.state.prof.jf === undefined ? (
+          <>
+            <Typography textAlign="center">Login</Typography>
+            <ExitToAppIcon className={classes.loginIcon} />
+          </>
+        ) : (
+          <AccountCircleIcon data={this.state.prof} />
+        )}
+      </IconButton>
     );
   }
 }
-export default GoogleLoginComponent;
+export default (withStyles(styles)(GoogleLoginComponent));

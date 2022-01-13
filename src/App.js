@@ -1,14 +1,16 @@
-import "./styles.css";
+import "./index.css";
 import logo from "./assets/logo.png";
 import React from "react";
 import SoundBar from "./components/SoundBar";
-import GoogleLoginComponent from "./components/GoogleLoginComponent";
+// import GoogleLoginComponent from "./components/GoogleLoginComponent";
 import {
   BsDownload,
   BsFillSuitHeartFill,
   BsPlayBtnFill,
   BsStopBtnFill,
 } from "react-icons/bs";
+import ScorderHeader from "./views/ScorderHeader.js";
+import ScorderRecordComponent from "./views/ScorderRecordComponent.js";
 
 export default function App() {
   const [dow, setDow] = React.useState("none");
@@ -165,86 +167,9 @@ export default function App() {
   }
 
   return (
-    <div className="App">
-      <div className="App__Header">
-        <img
-          src={logo}
-          width="80px"
-          height="80px"
-          style={{ margin: "0.4rem 0 0 0.4rem" }}
-        />
-        <GoogleLoginComponent clientId={process.env.REACT_APP_CLIENT_ID} />
-      </div>
-
-      <div className="App__Description">
-        <h3>Your simple Media Recorder. Fast, Functional and Free.</h3>
-        <p>
-          Record media on the go, without the hassle of complicated Software.
-        </p>
-      </div>
-
-      <div className="App__Body">
-        <div className="App__Buttons">
-          <button
-            style={{ display: `${dow}` }}
-            className="record"
-            id="Preview"
-            onClick={previewRecording}
-          >
-            <BsPlayBtnFill size={25} />
-          </button>
-          <button
-            style={{ display: `${dow}` }}
-            id="Download"
-            className="record"
-          >
-            <a id="download">
-              <BsDownload size={25} />
-            </a>
-          </button>
-          <button
-            id="stop"
-            className="record"
-            disabled={stop}
-            onClick={() => {
-              setSb(false);
-              mr.stop();
-            }}
-          >
-            <BsStopBtnFill size={25} />
-          </button>
-          <button
-            className="record"
-            disabled={rec}
-            onClick={() => {
-              recordAudio();
-              setSb(true);
-            }}
-          >
-            Record Audio
-          </button>
-          <button className="record" disabled={rec} onClick={recordVideo}>
-            Record Video
-          </button>
-          <button className="record" disabled={rec} onClick={recordScreen}>
-            Record Screen
-          </button>
-        </div>
-
-        <div className="App__Vid">
-          <video autoPlay height="480" width="1080" muted></video>
-          {sb === true ? <SoundBar /> : null}
-        </div>
-      </div>
-      <div className="App__Footer">
-        Made with <BsFillSuitHeartFill color="red" />, by{" "}
-        <a
-          className="App__Footerlink"
-          href="https://github.com/anusikh/screen-recorder"
-        >
-          anusikh
-        </a>
-      </div>
+    <div>
+      <ScorderHeader />
+      <ScorderRecordComponent />
     </div>
   );
 }

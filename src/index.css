@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+body {
+  background: rgb(11, 5, 73);
+  background: -moz-linear-gradient(
+    151deg,
+    rgb(38, 16, 78) 10%,
+    rgb(9, 9, 27) 40%,
+    rgba(38, 16, 78) 53%,
+    rgba(81, 57, 181, 1) 100% 
+    /* 5139B5 */
+  );
+  background: -webkit-linear-gradient(
+    151deg,
+    rgb(38, 16, 78) 10%,
+    rgb(9, 9, 27) 40%,
+    rgba(15, 4, 93, 1) 53%,
+    rgba(81, 57, 181, 1) 100%
+  );
+  background: linear-gradient(
+    151deg,
+    rgb(38, 16, 78) 10%,
+    rgb(9, 9, 27) 40%,
+    rgba(38, 16, 78) 73%,
+    rgba(81, 57, 181, 1) 100%
+  );
+  background-attachment: fixed;
+  margin: 0;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+h2 span span {
+  position: relative;
+  bottom: -1em;
+  opacity: 0;
+  animation: move-text 0.75s forwards;
+}
+
+h3 span span {
+  position: relative;
+  bottom: -1em;
+  opacity: 0;
+  animation: move-text 0.75s forwards;
+}
+
+h4 span span {
+  position: relative;
+  bottom: -1em;
+  opacity: 0;
+  animation: move-text 0.75s forwards;
+}
+
+@keyframes move-text {
+  0% {
+    bottom: -0.2em;
+    opacity: 1;
+  }
+
+  50% {
+    bottom: 0.2em;
+  }
+
+  100% {
+    bottom: 0;
+    opacity: 1;
+  }
+}
