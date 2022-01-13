@@ -5,7 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import MenuItem from "@material-ui/core/MenuItem";
 import Box from "@material-ui/core/Box";
-import GoogleLoginComponent from "../components/GoogleLoginComponent";
+import FirebaseLogin from "../components/FirebaseLogin"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,7 +44,7 @@ export default function ScorderHeader() {
             ))}
           </Box>
           <Box>
-            <GoogleLoginComponent clientId={process.env.REACT_APP_CLIENT_ID}/>
+            <FirebaseLogin />
           </Box>
         </Toolbar>
       </AppBar>

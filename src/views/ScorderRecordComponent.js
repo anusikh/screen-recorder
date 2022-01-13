@@ -11,6 +11,8 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import SplitText from "../components/SplitText";
 import { pxToVh, pxToVw } from "../utils/PxtoRemUtil";
 import SoundBar from "../components/SoundBar";
+import GoogleAd from "../components/GoogleAd";
+import {LogContext} from "../context/LogContext";
 
 const useStyles = makeStyles((theme) => ({
   textGrid: {
@@ -89,6 +91,8 @@ export default function ScorderRecordComponent() {
 
   const [mr, setMr] = React.useState(null);
 
+  const {loggedIn, dispatch} = React.useContext(LogContext);
+
   React.useEffect(() => {
     const videoElement1 = document.getElementsByTagName("video")[0];
     setVideoElement(videoElement1);
@@ -105,7 +109,7 @@ export default function ScorderRecordComponent() {
   function stopRecord() {
     setRec(false);
     setStop(true);
-    setDow("inline");
+    setDow("grid");
     console.log(downloadLink);
   }
 
@@ -283,7 +287,7 @@ export default function ScorderRecordComponent() {
                 </Button>
                 <Button
                   className={classes.downloadBtn}
-                  style={{ display: `${dow}` }}
+                  style={{ display: `${loggedIn === true ? dow : "none"}` }}
                 >
                   <a id="download">
                     <GetAppIcon />
@@ -309,6 +313,7 @@ export default function ScorderRecordComponent() {
           </h4>
         </Grid>
       </Grid>
+      <GoogleAd/>
     </Box>
   );
 }
