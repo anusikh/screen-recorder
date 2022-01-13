@@ -2,7 +2,6 @@ import "./index.css";
 import logo from "./assets/logo.png";
 import React from "react";
 import SoundBar from "./components/SoundBar";
-// import GoogleLoginComponent from "./components/GoogleLoginComponent";
 import {
   BsDownload,
   BsFillSuitHeartFill,
@@ -11,6 +10,7 @@ import {
 } from "react-icons/bs";
 import ScorderHeader from "./views/ScorderHeader.js";
 import ScorderRecordComponent from "./views/ScorderRecordComponent.js";
+
 
 export default function App() {
   const [dow, setDow] = React.useState("none");

@@ -22,3 +22,4 @@ class GoogleAd extends Component {
 }
 
 export default GoogleAd;
+
