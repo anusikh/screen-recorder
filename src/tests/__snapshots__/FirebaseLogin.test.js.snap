@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FirebaseLogin Functionality Snapshot 1`] = `
+<div
+  className="FirebaseLogin__Main"
+>
+  <button
+    className="FirebaseLogin__Butt"
+    onClick={[Function]}
+  >
+    Login
+  </button>
+</div>
+`;
+
+exports[`FirebaseLogin Functionality Snapshot 2`] = `
+<div
+  className="FirebaseLogin__Main"
+>
+  <button
+    className="FirebaseLogin__Butt"
+    onClick={[Function]}
+  >
+    Login
+  </button>
+</div>
+`;
