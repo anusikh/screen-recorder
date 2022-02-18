@@ -1,128 +1,87 @@
-@import url("https://fonts.googleapis.com/css2?family=Style+Script&display=swap");
-
 a,
 u {
   text-decoration: none;
-  color: red;
+  color: var(--gr);
+}
+
+:root {
+  --gr: #4caf50;
+  --re: red;
+  --wh: black;
+  --bl: white;
 }
 
 body {
-  display: block;
-  background-color: black;
   margin: 0;
+  background-color: var(--wh);
+  font-size: 0.85rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .App {
-  height: 100vh;
-  font-family: sans-serif;
-}
-
-.App__Header {
-  height: 5rem;
-  width: 100vw;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
 }
 
-.App__Footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  margin: 0 0 0.3rem 0;
-  color: #4caf50;
-  font-size: 1rem;
-  font-weight: bold;
+.App__Header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .App__Description {
-  color: #4caf50;
-  font-size: 1.5rem;
-  text-align: center;
-  margin: 0 0 0 0;
+  color: var(--bl);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.App__Description > p {
-  font-size: 1rem;
-  font-weight: bold;
+#download {
+  color: var(--wh);
+}
+
+.FirebaseLogin__image {
+  margin: 1rem 0 0 0;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 3.5rem;
+  border: 0.2rem var(--gr) solid;
 }
 
 .App__Description > span {
-  font-size: 1rem;
-  font-weight: bold;
-  color: red;
+  margin: 0.1rem 0 0 0;
   animation-name: beep;
   animation-duration: 2s;
   animation-iteration-count: infinite;
 }
 
 @keyframes beep {
-  /* from {
-    color: red;
-  }
-  to {
-    color: black;
-  } */
   0% {
-    color: red;
+    color: var(--gr);
   }
   50% {
-    color: black;
+    color: var(--wh);
   }
   100% {
-    color: red;
+    color: var(--gr);
   }
-}
-
-.App__Body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 10rem 0 10rem;
 }
 
 .App__Buttons {
-  margin: 3rem;
-  height: 24rem;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
+  margin: 1.3rem 3rem 1.3rem 3rem;
 }
 
-.App__Vid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 50rem;
-}
-
-.record {
-  background-color: #4caf50;
-  border: none;
-  width: 8rem;
-  height: 3rem;
-  border-radius: 1rem;
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-.record > a {
-  color: white;
-}
-
-#Download {
-  background-color: cornflowerblue;
-}
-
-#stop {
-  background-color: red;
-}
-
-#Preview {
-  background-color: cadetblue;
+.App__Buttons > button {
+  width: 7rem;
+  height: 2rem;
+  border: 0.1rem var(--bl) solid;
+  margin: 0 0.3rem 0 0.3rem;
+  background-color: transparent;
+  color: var(--bl);
+  border-radius: 0.5rem;
 }
 
 #bars {
@@ -135,7 +94,7 @@ body {
 }
 
 .bar {
-  background: green;
+  background: var(--bl);
   bottom: 1px;
   height: 10px;
   position: absolute;
@@ -145,7 +104,7 @@ body {
 
 @keyframes sound {
   0% {
-    opacity: 0.35;
+    opacity: 0.3;
     height: 3px;
   }
   100% {
@@ -195,28 +154,35 @@ body {
   animation-duration: 442ms;
 }
 
-.FirebaseLogin__image {
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 3.5rem;
-}
-
-.FirebaseLogin__Main {
-  color: #4caf50;
-  margin: 0 1.5rem 0 0;
+.App__Vid {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.FirebaseLogin__Butt {
-  border: none;
-  color: #4caf50;
-  background-color: transparent;
-  font-weight: bold;
-  font-size: large;
+.App__Footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: var(--bl);
+  text-align: center;
+  align-items: center;
+  margin: 0 0 0.3rem 0;
 }
 
-.FirebaseLogin__Butt:hover {
-  color: white;
+.App__MobileMessage {
+  display: none;
+}
+
+@media only screen and (max-width: 500px) {
+  .App__IfPC {
+    display: none;
+  }
+  .App__MobileMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }

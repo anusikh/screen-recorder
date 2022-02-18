@@ -2,12 +2,10 @@ import "./styles.css";
 import logo from "./assets/logo.png";
 import React from "react";
 import SoundBar from "./components/SoundBar";
-import {
-  BsDownload,
-  BsFillSuitHeartFill,
-  BsPlayBtnFill,
-  BsStopBtnFill,
-} from "react-icons/bs";
+import { BsSuitHeartFill, BsStop } from "react-icons/bs";
+import { MdOutlinePlayArrow } from "react-icons/md";
+import { AiOutlineDownload } from "react-icons/ai";
+import { FiSun, FiMoon } from "react-icons/fi";
 import GoogleAd from "./components/GoogleAd";
 import FirebaseLogin from "./components/FirebaseLogin";
 import { LogContext } from "./context/LogContext";
@@ -18,6 +16,7 @@ export default function App() {
   const [rec, setRec] = React.useState(false);
   const [sb, setSb] = React.useState(false);
   const [prev, setPrev] = React.useState();
+  const [th, setTh] = React.useState(0);
 
   const { loggedIn, dispatch } = React.useContext(LogContext);
 
@@ -32,6 +31,18 @@ export default function App() {
     const downloadLink1 = document.getElementById("download");
     setDownloadLink(downloadLink1);
   }, []);
+
+  React.useEffect(() => {
+    var r = document.querySelector(":root");
+
+    if (th === 1) {
+      r.style.setProperty("--bl", "white");
+      r.style.setProperty("--wh", "black");
+    } else {
+      r.style.setProperty("--wh", "white");
+      r.style.setProperty("--bl", "black");
+    }
+  });
 
   function startRecord() {
     setRec(true);
@@ -168,92 +179,110 @@ export default function App() {
     videoElement.srcObject = stream;
   }
 
+  const handleTheme = () => {
+    setTh(th ^ 1);
+  };
+
   return (
     <div className="App">
-      <div className="App__Header">
+      <div className="App__IfPC">
+        <div className="App__Header">
+          <FirebaseLogin />
+        </div>
+
+        <div className="App__Description">
+          <p>A Simple Media Recorder. Fast, Functional and Free.</p>
+          {th === 0 ? (
+            <FiMoon onClick={handleTheme} />
+          ) : (
+            <FiSun onClick={handleTheme} />
+          )}
+          {loggedIn === false ? (
+            <span>Log In to download the Recording</span>
+          ) : null}
+        </div>
+
+        <div className="App__Body">
+          <div className="App__Buttons">
+            <button
+              style={{ display: `${dow}` }}
+              className="record"
+              id="Preview"
+              onClick={previewRecording}
+            >
+              <MdOutlinePlayArrow size={22.5} />
+            </button>
+
+            <button
+              style={{ display: `${loggedIn === true ? dow : "none"}` }}
+              id="Download"
+              className="record"
+            >
+              <a id="download">
+                <AiOutlineDownload size={24} />
+              </a>
+            </button>
+
+            <button
+              id="stop"
+              className="record"
+              disabled={stop}
+              onClick={() => {
+                setSb(false);
+                mr.stop();
+              }}
+            >
+              <BsStop size={22.5} />
+            </button>
+            <button
+              className="record"
+              disabled={rec}
+              onClick={() => {
+                recordAudio();
+                setSb(true);
+              }}
+            >
+              Record Audio
+            </button>
+            <button className="record" disabled={rec} onClick={recordVideo}>
+              Record Video
+            </button>
+            <button className="record" disabled={rec} onClick={recordScreen}>
+              Record Screen
+            </button>
+          </div>
+
+          <GoogleAd />
+
+          <div className="App__Vid">
+            <video
+              autoPlay
+              height="300"
+              width="500"
+              muted
+              controlsList="nodownload"
+            ></video>
+            {sb === true ? <SoundBar /> : null}
+          </div>
+        </div>
+        <div className="App__Footer">
+          Made with <BsSuitHeartFill />, by{" "}
+          <a
+            className="App__Footerlink"
+            href="https://github.com/anusikh/screen-recorder"
+          >
+            anusikh
+          </a>
+        </div>
+      </div>
+      <div className="App__MobileMessage">
         <img
           src={logo}
-          width="80px"
-          height="80px"
+          width="60"
+          height="60"
           style={{ margin: "0.4rem 0 0 0.4rem" }}
         />
-        <FirebaseLogin />
-      </div>
-
-      <div className="App__Description">
-        <h3>Your simple Media Recorder. Fast, Functional and Free.</h3>
-        <p>
-          Record media on the go, without the hassle of complicated Software.
-        </p>
-        {loggedIn === false ? (
-          <span>Log In to download the Recording</span>
-        ) : null}
-      </div>
-
-      <div className="App__Body">
-        <div className="App__Buttons">
-          <button
-            style={{ display: `${dow}` }}
-            className="record"
-            id="Preview"
-            onClick={previewRecording}
-          >
-            <BsPlayBtnFill size={25} />
-          </button>
-
-          <button
-            style={{ display: `${loggedIn === true ? dow : "none"}` }}
-            id="Download"
-            className="record"
-          >
-            <a id="download">
-              <BsDownload size={25} />
-            </a>
-          </button>
-
-          <button
-            id="stop"
-            className="record"
-            disabled={stop}
-            onClick={() => {
-              setSb(false);
-              mr.stop();
-            }}
-          >
-            <BsStopBtnFill size={25} />
-          </button>
-          <button
-            className="record"
-            disabled={rec}
-            onClick={() => {
-              recordAudio();
-              setSb(true);
-            }}
-          >
-            Record Audio
-          </button>
-          <button className="record" disabled={rec} onClick={recordVideo}>
-            Record Video
-          </button>
-          <button className="record" disabled={rec} onClick={recordScreen}>
-            Record Screen
-          </button>
-        </div>
-
-        <div className="App__Vid">
-          <video autoPlay height="480" width="1080" muted></video>
-          {sb === true ? <SoundBar /> : null}
-        </div>
-      </div>
-      <GoogleAd />
-      <div className="App__Footer">
-        Made with <BsFillSuitHeartFill color="red" />, by{" "}
-        <a
-          className="App__Footerlink"
-          href="https://github.com/anusikh/screen-recorder"
-        >
-          anusikh
-        </a>
+        <p>Sorry, only accessible via pc :(</p>
       </div>
     </div>
   );
