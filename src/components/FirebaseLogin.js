@@ -2,6 +2,7 @@ import React from "react";
 import "../styles.css";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../firebase";
+import logo from "../assets/logo.png";
 import { LogContext } from "../context/LogContext";
 
 function FirebaseLogin() {
@@ -25,9 +26,13 @@ function FirebaseLogin() {
   return (
     <div className="FirebaseLogin__Main">
       {photoURL === "" ? (
-        <button className="FirebaseLogin__Butt" onClick={signInWithFirebase}>
-          Login
-        </button>
+        <img
+          src={logo}
+          width="60"
+          height="60"
+          style={{ margin: "0.4rem 0 0 0.4rem" }}
+          onClick={signInWithFirebase}
+        />
       ) : (
         <img src={photoURL} className="FirebaseLogin__image" alt="Login" />
       )}
