@@ -50,7 +50,7 @@ body {
 }
 
 .App__Description > span {
-  margin: 0.1rem 0 0 0;
+  margin: 0.5rem 0 0 0;
   animation-name: beep;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -82,6 +82,10 @@ body {
   background-color: transparent;
   color: var(--bl);
   border-radius: 0.5rem;
+}
+
+.App__Buttons > button:hover {
+  transform: scale(1.1);
 }
 
 #bars {

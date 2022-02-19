@@ -86,6 +86,7 @@ export default function App() {
       tracks.forEach((track) => {
         track.stop();
       });
+      mediaRecorder.state === "inactive" ? null : mediaRecorder.stop();
       videoElement.srcObject = null;
     };
 
