@@ -220,7 +220,10 @@ export default function App() {
               className="record"
             >
               <a id="download">
-                <AiOutlineDownload size={24} />
+                <AiOutlineDownload
+                  color={th === 1 ? "white" : "black"}
+                  size={24}
+                />
               </a>
             </button>
 
