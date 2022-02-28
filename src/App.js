@@ -256,8 +256,6 @@ export default function App() {
             </button>
           </div>
 
-          <GoogleAd />
-
           <div className="App__Vid">
             <video
               autoPlay
@@ -269,6 +267,9 @@ export default function App() {
             {sb === true ? <SoundBar /> : null}
           </div>
         </div>
+
+        <GoogleAd />
+
         <div className="App__Footer">
           Made with <BsSuitHeartFill />, by{" "}
           <a
